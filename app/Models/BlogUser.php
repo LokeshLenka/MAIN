@@ -14,4 +14,19 @@ class BlogUser extends Model
     protected $fillable = [
         'user_id',
     ];
+
+    public function followers()
+    {
+        return $this->belongsToMany(BlogUser::class, 'follows', 'following_id', 'follower_id');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(BlogUser::class, 'follows', 'follower_id', 'following_id');
+    }
+
+    public function isFollowing($userId)
+    {
+        return $this->following()->where('following_id', $userId)->exists();
+    }
 }

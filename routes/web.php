@@ -13,6 +13,7 @@ use App\Http\Controllers\TodoController;
 use App\Http\Controllers\TokenIsValidController;
 use App\Http\Middleware\TokenIsValid;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ExampleRequestController;
 // use Closure;
 
 Route::get('/', function () {
@@ -145,6 +146,9 @@ Route::resource('bloguser', BlogUserController::class);
 
 Route::resource('blog', BlogController::class)->middleware('auth');
 
+Route::middleware('auth')->group(function () {
+    Route::post('/follow/{id}', [BlogUserController::class, 'update'])->name('bloguser.update');
+});
 
 
 
@@ -159,6 +163,8 @@ Route::resource('blog', BlogController::class)->middleware('auth');
 
 
 
+
+Route::get('/lokesh',[ExampleRequestController::class,'show']);
 
 
 
