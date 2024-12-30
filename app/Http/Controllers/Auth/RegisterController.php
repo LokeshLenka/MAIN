@@ -72,10 +72,6 @@ class RegisterController extends Controller
         ]);
 
         // Save related blog user data
-        BlogUser::create([
-            'user_id' => $user->id, // Example column
-        ]);
-
         return $user;
     }
 }

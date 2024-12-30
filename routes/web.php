@@ -165,6 +165,8 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/lokesh',[ExampleRequestController::class,'show']);
+Route::get('/loki',[ExampleRequestController::class,'psrget'])->name('psrget');
+Route::post('/loki',[ExampleRequestController::class,'psrpost'])->name('psrpost');
 
 
 
