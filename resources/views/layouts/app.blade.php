@@ -13,7 +13,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <link href="resources/css/bootstrap.css" rel="stylesheet" />
+    {{-- <link href="resources/css/bootstrap.css" rel="stylesheet" /> --}}
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css"> --}}
 
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
@@ -57,7 +57,7 @@
             /* Increase or decrease as needed */
         }
     </style>
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 {{-- @section('content') --}}
 
@@ -149,6 +149,99 @@
             published.style.display = 'none';
         }, 3000);
     </script>
+
+    {{-- <script>
+        // Add this to your JavaScript file
+        document.querySelectorAll('.follow-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const userId = this.dataset.userId;
+                fetch(`/follow/${userId}`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Update button state
+                            this.classList.remove('follow-btn');
+                            this.classList.add('unfollow-btn');
+                            this.textContent = 'Unfollow';
+                        }
+                    });
+            });
+        });
+
+        document.querySelectorAll('.unfollow-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const userId = this.dataset.userId;
+                fetch(`/unfollow/${userId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Update button state
+                            this.classList.remove('unfollow-btn');
+                            this.classList.add('follow-btn');
+                            this.textContent = 'Follow';
+                        }
+                    });
+            });
+        });
+    </script> --}}
+
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateFollowButton(button, isFollowing) {
+                if (isFollowing) {
+                    button.classList.remove('btn-primary', 'follow-btn');
+                    button.classList.add('btn-secondary', 'unfollow-btn');
+                    button.textContent = 'Unfollow';
+                } else {
+                    button.classList.remove('btn-secondary', 'unfollow-btn');
+                    button.classList.add('btn-primary', 'follow-btn');
+                    button.textContent = 'Follow';
+                }
+            }
+
+            // Handle follow button clicks
+            document.addEventListener('click', function(e) {
+                if (e.target.matches('.follow-btn, .unfollow-btn')) {
+                    const button = e.target;
+                    const userId = button.dataset.userId;
+                    const isUnfollow = button.classList.contains('unfollow-btn');
+                    const url = isUnfollow ? `/unfollow/${userId}` : `/follow/${userId}`;
+                    const method = isUnfollow ? 'DELETE' : 'POST';
+
+                    fetch(url, {
+                            method: method,
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                    .content,
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                updateFollowButton(button, !isUnfollow);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+            });
+        });
+    </script> --}}
+
 </body>
 
 </html>

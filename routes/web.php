@@ -14,6 +14,7 @@ use App\Http\Controllers\TokenIsValidController;
 use App\Http\Middleware\TokenIsValid;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExampleRequestController;
+use App\Http\Controllers\FollowControllers;
 // use Closure;
 
 Route::get('/', function () {
@@ -143,12 +144,33 @@ Route::prefix('testuser')->group(function () {
 
 Route::resource('bloguser', BlogUserController::class);
 
+Route::get('/allusers', [BlogUserController::class, 'showAllUsers'])->name('bloguser.alluser');
+Route::post('/allusers', [BlogUserController::class, 'followUser'])->name('followUser');
+// Route::post('/allusers', [BlogUserController::class, 'unFollowUser'])->name('unFollowUser');
+
 
 Route::resource('blog', BlogController::class)->middleware('auth');
 
-Route::middleware('auth')->group(function () {
-    Route::post('/follow/{id}', [BlogUserController::class, 'update'])->name('bloguser.update');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::post('/follow/{id}', [BlogUserController::class, 'update'])->name('bloguser.update');
+// });
+
+
+
+
+
+// Route::get('/follow', [FollowControllers::class, 'follow'])->name('follow');
+// Route::post('/ausers}', [FollowControllers::class, 'follow'])->name('follow');
+// Route::delete('/unfollow/{user}', [FollowControllers::class, 'unfollow'])->name('unfollow');
+// Route::get('/users/{user}/followers', [FollowControllers::class, 'followers'])->name('followers');
+// Route::get('/users/{user}/following', [FollowControllers::class, 'following'])->name('following');
+
+
+// Route::get('/ausers', [FollowControllers::class, 'userDirectory'])
+//     ->name('user.directory')
+//     ->middleware('auth');
+
+// Route::get('/users')
 
 
 
@@ -157,16 +179,9 @@ Route::middleware('auth')->group(function () {
 
 
 
-
-
-
-
-
-
-
-Route::get('/lokesh',[ExampleRequestController::class,'show']);
-Route::get('/loki',[ExampleRequestController::class,'psrget'])->name('psrget');
-Route::post('/loki',[ExampleRequestController::class,'psrpost'])->name('psrpost');
+Route::get('/lokesh', [ExampleRequestController::class, 'show']);
+Route::get('/loki', [ExampleRequestController::class, 'psrget'])->name('psrget');
+Route::post('/loki', [ExampleRequestController::class, 'psrpost'])->name('psrpost');
 
 
 

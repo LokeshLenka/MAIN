@@ -25,7 +25,7 @@
                     <div class="flex flex-col justify-between h-full w-full">
                         <!-- Blog Title -->
                         <div>
-                            <h3 class="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-2">
+                            <h3 class="text-lg font-bold text-indigo-600 dark:text-indigo-300 mb-2">
                                 {{ $blog->blogtitle }}
                             </h3>
                         </div>

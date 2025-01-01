@@ -9,9 +9,8 @@
 </head>
 
 <body style="background-color:rgb(48, 50, 51);">
-    <h1 style="color:bisque"> This is basic page MR.{{ $id ?? 'Guest'}}
-
-        {{ $called ?? 'Home route not called'}}
+    <h1 style="color:bisque"> This is basic page MR.{{ $id ?? 'Guest' }}
+        {{ $called ?? 'Home route not called' }}
     </h1>
 
 

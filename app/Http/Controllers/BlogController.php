@@ -44,17 +44,16 @@ class BlogController extends Controller
             'author_id' => Auth::id(),
             'created_at' => now(),
             'updated_at' => now(),
-            'category' => 'nullable',
+            'category' => null,
             'blogtitle' => $request->input('blogtitle'),
             'blogcontent' => $request->input('blogcontent'),
-            'photo' => 'nullable',
+            'photo' => null,
         ]);
 
         if (!$this->updateblogpostcount()) {
-            echo '<h1><center>Something Went Wrong</center></h1>';
-            return redirect('/');
+            return redirect('/')->withErrors(['error' => 'Something Went Wrong']);
         }
-        return redirect()->back()->with('publish', 'Published  ✅');
+        return redirect()->back()->with('publish', 'Published ✅');
     }
 
     /**

@@ -1,28 +1,28 @@
 <x-app-layout>
-    <div class="min-h-screen bg-blue-300 dark:bg-slate-950 flex justify-center items-start">
+    <div class="flex items-start justify-center min-h-screen bg-blue-300 dark:bg-slate-950">
         <div
-            class=" h-full flex justify-center mt-24 bg-sky-100 dark:bg-slate-900 dark:text-slate-50 text-slate-900 w-11/12 lg:w-4/5 sm:w-11/12 rounded-lg shadow-lg">
+            class="flex justify-center w-11/12 h-full mt-24 rounded-lg shadow-lg  bg-sky-100 dark:bg-slate-900 dark:text-slate-50 text-slate-900 lg:w-4/5 sm:w-11/12">
 
             <div class="flex flex-col w-full">
-                <div class="w-4/5 flex justify-center mx-auto rounded-lg h-32 mt-10  border-indigo-600 bg-fuchsia-400">
+                <div class="flex justify-center w-4/5 h-32 mx-auto mt-10 border-indigo-600 rounded-lg bg-fuchsia-400">
                     Background DP
                 </div>
-                <div class="w-28 flex justify-center mx-auto h-28 -mt-12 bg-fuchsia-900 rounded-full">
+                <div class="flex justify-center mx-auto -mt-12 rounded-full w-28 h-28 bg-fuchsia-900">
                     DP
                 </div>
-                <div class="w-4/5 flex justify-center mx-auto h-8 mt-1 bg-transparent rounded-lg">
-                    <p class="text-xl text-indigo-600 font-semibold"> {{ $username->name }} </p>
+                <div class="flex justify-center w-4/5 h-8 mx-auto mt-1 bg-transparent rounded-lg">
+                    <p class="text-xl font-semibold text-indigo-600"> {{ $username->name }} </p>
                 </div>
                 <div
-                    class="w-4/5 h-auto min-h-20 lg:max-h-32 flex justify-center mx-auto mt-1 bg-transparent rounded-lg">
+                    class="flex justify-center w-4/5 h-auto mx-auto mt-1 bg-transparent rounded-lg min-h-20 lg:max-h-32">
                     <p>
                         {!! nl2br($userdetails->bio) !!}
                     </p>
                 </div>
 
-                <div class="w-full lg:w-4/5 flex justify-center mx-auto m-2 p-2">
-                    <div class="w-full lg:w-2/3 flex justify-around mx-auto">
-                        <div class="w-full border-r text-center">
+                <div class="flex justify-center w-full p-2 m-2 mx-auto lg:w-4/5">
+                    <div class="flex justify-around w-full mx-auto lg:w-2/3">
+                        <div class="w-full text-center border-r">
                             {{ $userdetails->blogpostcount }}<br>
                             Posts
 
@@ -32,7 +32,7 @@
                             Followers
                         </div>
 
-                        <div class="w-full border-l text-center">
+                        <div class="w-full text-center border-l">
                             {{ $userdetails->following }}<br>
                             Following
                         </div>
@@ -47,24 +47,24 @@
                 @csrf
                 @if (auth()->id() !== $userdetails->user_id)
                     <div
-                        class="w-4/5 flex flex-col sm:flex-row justify-center sm:space-x-5 mx-auto mt-12 space-y-4 sm:space-y-0 mb-4">
-                        <div class="w-full h-10 flex justify-end">
+                        class="flex flex-col justify-center w-4/5 mx-auto mt-12 mb-4 space-y-4 sm:flex-row sm:space-x-5 sm:space-y-0">
+                        <div class="flex justify-end w-full h-10">
 
 
                             <button id="follow-btn"
-                                class="min-w-32 w-full lg:w-1/2 sm:w-1/5 bg-blue-400 text-white hover:bg-blue-500 py-2 rounded-lg text-center"
+                                class="w-full py-2 text-center text-white bg-blue-400 rounded-lg min-w-32 lg:w-1/2 sm:w-1/5 hover:bg-blue-500"
                                 data-user-id="{{ $userdetails->user_id }}">
-                                {{ auth()->user()->isFollowing($userdetails->user_id)? 'Unfollow': 'Follow' }}
+                                {{-- {{ auth()->user()->isFollowing($userdetails->user_id)? 'Unfollow': 'Follow' }} --}}
                             </button>
 
                         </div>
-                        <div class="w-full h-10 flex justify-start sm:flex-row">
+                        <div class="flex justify-start w-full h-10 sm:flex-row">
                             <button
-                                class="min-w-32 w-full lg:w-1/2 sm:w-1/5 bg-blue-400 text-white hover:bg-blue-500 py-2 rounded-lg text-center">
+                                class="w-full py-2 text-center text-white bg-blue-400 rounded-lg min-w-32 lg:w-1/2 sm:w-1/5 hover:bg-blue-500">
                                 Message
                             </button>
                             <button
-                                class="w-auto sm:w-auto border-2 ml-4 py-2 px-1 rounded-lg flex justify-center border-black dark:border-white">
+                                class="flex justify-center w-auto px-1 py-2 ml-4 border-2 border-black rounded-lg sm:w-auto dark:border-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                                     width="24px" fill="#60A5FA">
                                     <path
